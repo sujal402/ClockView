@@ -105,6 +105,7 @@ export default function AddProductPage() {
               type="file"
               name="images"
               multiple
+              required
               accept="image/*"
               className={inputClass}
             />
@@ -119,6 +120,7 @@ export default function AddProductPage() {
               type="file"
               name="videos"
               multiple
+              required
               accept="video/*"
               className={inputClass}
             />

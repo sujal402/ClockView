@@ -5,10 +5,11 @@ export default function ProductCard({ product }) {
     <Link href={`/products/${product._id}`}>
       <div className="border p-4 rounded-lg hover:shadow-lg transition cursor-pointer bg-white flex flex-col">
         <img
-          src={product?.imageUrl || "/watch1.jpg"}
+          src={product.imageUrl?.[0]?.url || "/watch1.jpg"} // ✅ access url
           alt={product?.name}
           className="w-full h-48 object-contain mb-3 rounded-md"
         />
+
 
         <p className="text-sm font-medium">Code: {product.code}</p>
         <p className="text-sm">Company: {product.companyName}</p>

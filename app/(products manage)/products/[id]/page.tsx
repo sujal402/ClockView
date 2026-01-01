@@ -1,5 +1,7 @@
 import RecommendationedProducts from "@/components/Recommended-products";
 import QuantityAndCart from "@/components/QuantityAndCart";
+import ProductGallery from "@/components/product-gallary";
+
 
 export default async function ProductDetail({ params }: any) {
   const resolvedParams = await params;
@@ -26,14 +28,7 @@ export default async function ProductDetail({ params }: any) {
       {/* Product Section */}
       <section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
         
-        {/* Image */}
-        <div className="bg-slate-900/60 rounded-2xl p-6 border border-white/10">
-          <img
-            src={product?.imageUrl || "/watch1.jpg"}
-            alt={product?.name}
-            className="w-full h-[420px] object-contain"
-          />
-        </div>
+        <ProductGallery product={product} />
 
         {/* Details */}
         <div className="space-y-3">
