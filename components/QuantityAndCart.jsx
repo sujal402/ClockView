@@ -1,8 +1,19 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMyContext } from "@/context/context";
+import cart from "../app/cart/page";
 
 export default function QuantityAndCart({ product }) {
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
+  const { user } = useMyContext();
+
+  const isLoggedIn = !!user;
+
+  function AddToCart(){
+    router.push("/cart");
+  }
 
   return (
     <div className="flex items-center gap-6 mt-8">
@@ -25,7 +36,7 @@ export default function QuantityAndCart({ product }) {
       </div>
       {/* Add to Cart */}
       <button
-        onClick={() => console.log("Add to cart", product, quantity)}
+        onClick={AddToCart}
         className="bg-gradient-to-r from-amber-500 to-orange-500 
                    text-black font-semibold px-8 py-3 rounded-lg 
                    hover:scale-105 transition cursor-pointer"

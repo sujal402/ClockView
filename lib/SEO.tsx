@@ -5,8 +5,8 @@ import type { Metadata } from "next";
 ===================== */
 
 export const SITE_CONFIG = {
-  name: "LuxeWatches",
-  url: "https://luxewatches.com",
+  name: "clockShop",
+  url: "https://clock-view-beta.vercel.app/",
   description:
     "Luxury Swiss watches and premium timepieces crafted for elegance and precision.",
   ogImage: "/og/default.png",
@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
 
 /* =====================
    BASE SEO (USED EVERYWHERE)
-===================== */
+===================== */  
 
 type BaseSEO = {
   title?: string;
