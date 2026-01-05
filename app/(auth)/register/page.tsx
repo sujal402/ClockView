@@ -13,6 +13,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [userRoll, setUserRoll] = useState("");
 
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -70,7 +71,7 @@ export default function RegisterPage() {
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/register`,
-        { username, email, password },
+        { username, email, password, userRoll},
         { withCredentials: true }
       );
 
@@ -136,6 +137,22 @@ export default function RegisterPage() {
                 <p className="text-red-400 text-sm mt-2">{usernameError}</p>
               )}
             </div>
+
+            <div>
+            <label className="block text-sm font-semibold mb-2">
+              Account Type
+            </label>
+
+            <select
+              value={userRoll}
+              onChange={(e) => setUserRoll(e.target.value)} required
+              className="w-full bg-slate-600 border border-slate-500 text-white p-3 rounded-lg focus:border-amber-400 focus:outline-none transition"
+            >
+              <option value="customer">Customer</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
 
             <div>
               <label className="block text-sm font-semibold mb-2">Email Address</label>
@@ -215,4 +232,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-

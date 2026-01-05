@@ -12,6 +12,7 @@ export const MyContextProvider = ( { children } ) => {
 
     const [ state , setState ] = useState ( {
         user : null,
+        userRole: "",
         userName : "",
         userEmail : "",
         theme : "light",

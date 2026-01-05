@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { theme, language, user,userEmail,userName,updateState } = useMyContext();
+  const { updateState } = useMyContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,7 @@ export default function LoginPage() {
     try {
 
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
-          {email,password } ,
+          {email,password},
           { withCredentials: true }
         );
 
@@ -53,6 +53,7 @@ export default function LoginPage() {
       }
       updateState("userEmail", email);
       updateState("user", res.data.user);
+      updateState("userRole", res.data.user.userRoll)
 
       console.log("User verified");
       router.push("/");
