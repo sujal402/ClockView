@@ -4,6 +4,28 @@ import Header from "../components/Headers";
 import Footer from "../components/Footer";
 import { MyContextProvider } from "../context/context";
 import "./globals.css";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/ui/theme-provider"
+
+// export default function RootLayout({ children }: RootLayoutProps) {
+//   return (
+//     <>
+//       <html lang="en" suppressHydrationWarning>
+//         <head />
+//         <body>
+//           <ThemeProvider
+//             attribute="class"
+//             defaultTheme="system"
+//             enableSystem
+//             disableTransitionOnChange
+//           >
+//             {children}
+//           </ThemeProvider>
+//         </body>
+//       </html>
+//     </>
+//   )
+// }
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,14 +50,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <MyContextProvider >
         <Header />
         <main className="flex-grow">
-          {children}
+          
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+
+          <Toaster richColors position="top-center" />
         </main>
         <Footer />
         </MyContextProvider>

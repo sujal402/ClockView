@@ -4,6 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useMyContext } from "../../../context/context";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+import { toast } from "sonner";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -47,7 +53,6 @@ export default function RegisterPage() {
     return "";
   }
 
-  // MOVED OUTSIDE RETURN - Define function before JSX
   async function AddUser() {
     setSuccessMessage("");
     setIsLoading(true);
@@ -78,7 +83,8 @@ export default function RegisterPage() {
       const data = res.data;
 
       if (res.status === 201) {
-        setSuccessMessage("Registration successful! Redirecting to login...");
+        toast.success("Registration successful! Redirecting to login...");
+        // setSuccessMessage("Registration successful! Redirecting to login...");
         setUsername("");
         setEmail("");
         setPassword("");
@@ -87,7 +93,8 @@ export default function RegisterPage() {
           router.push("/login");
         }, 2000);
       } else {
-        setSuccessMessage(`Registration failed: ${data.message}`);
+        toast.error(`Registration failed: ${data.message}`);
+        // setSuccessMessage(`Registration failed: ${data.message}`);
       }
     } catch (error: unknown) {
       let msg = "An error occurred. Please try again.";

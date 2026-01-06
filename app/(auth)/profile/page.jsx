@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import AdminProfile from "@/components/adminProfile";
 import CustomerProfile from "@/components/customerProfile";
+import { toast } from "sonner";
 
 export default function Profile() {
   const { user, updateState } = useMyContext();
@@ -80,6 +81,7 @@ export default function Profile() {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
       updateState("user", null);
+      toast.success("You’ve been logged out");
       router.push("/");
     } catch (err) {
       console.error("Logout error:", err);

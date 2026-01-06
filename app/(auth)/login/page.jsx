@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useMyContext } from "@/context/context";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,6 +13,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
 
   // Error states
   const [emailError, setEmailError] = useState("");
@@ -26,42 +28,40 @@ export default function LoginPage() {
     if (value.length < 6) return "Password must be at least 6 characters";
     return "";
   };
+  const verifyUser = async function () {
+  setLoginMessage("");
 
-  const verifyUser = async function() {
-    const emailErr = validateEmail(email);
-    const passErr = validatePassword(password);
+  const emailErr = validateEmail(email);
+  const passErr = validatePassword(password);
 
-    setEmailError(emailErr);
-    setPasswordError(passErr);
+  setEmailError(emailErr);
+  setPasswordError(passErr);
 
-    if (emailErr || passErr) return;
-
-    console.log("Verifying user...");
-    // console.log("backend url:", process.env.NEXT_PUBLIC_BACKEND_URL);
-
-    try {
-
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
-          {email,password},
-          { withCredentials: true }
-        );
-
-      console.log("Login response:", res);
-      if (res.status !== 200) {
-        setPasswordError("Invalid email or password");
-        return;
-      }
-      updateState("userEmail", email);
-      updateState("user", res.data.user);
-      updateState("userRole", res.data.user.userRoll)
-
-      console.log("User verified");
-      router.push("/");
-    }catch(error){
-      console.log("login error:",error.message);
-      setPasswordError("Invalid email or password");
-    }
+  if (emailErr || passErr) {
+    return;
   }
+
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
+      { email, password },
+      { withCredentials: true }
+    );
+
+    updateState("userEmail", email);
+    updateState("user", res.data.user);
+    updateState("userRole", res.data.user.userRoll);
+
+    toast.success("Login successful! Redirecting...");
+    setLoginMessage("Login successful! Redirecting...");
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
+  } catch (error) {
+    setPasswordError("Invalid email or password");
+    toast.error("Invalid email or password");
+  }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white flex items-center justify-center p-4">

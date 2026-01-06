@@ -4,6 +4,7 @@ import { CiUser, CiLogin } from "react-icons/ci";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import { useMyContext } from "@/context/context";
+import {ModeToggle} from "@/components/theme"
 
 export default function UserIcon() {
   const pathname = usePathname();
@@ -37,16 +38,19 @@ export default function UserIcon() {
   const border = "border border-slate-600";
 
   return (
-    <Link href={isLoggedIn ? "/profile" : "/login"}>
-      {isLoggedIn ? (
-        <div className={`${base} ${border} ${isActive ? "bg-slate-700 text-amber-400" : "text-white hover:bg-slate-700 hover:text-amber-400"}`}>
-          <CiUser size={26} />
-        </div>
-      ) : (
-        <div className={`${base} ${border} text-white hover:text-amber-400 hover:bg-slate-700`}>
-          <CiLogin size={26} />
-        </div>
-      )}
-    </Link>
+    <>
+      {/* <ModeToggle /> */}
+      <Link href={isLoggedIn ? "/profile" : "/login"}>
+        {isLoggedIn ? (
+          <div className={`${base} ${border} ${isActive ? "bg-slate-700 text-amber-400" : "text-white hover:bg-slate-700 hover:text-amber-400"}`}>
+            <CiUser size={26} />
+          </div>
+        ) : (
+          <div className={`${base} ${border} text-white hover:text-amber-400 hover:bg-slate-700`}>
+            <CiLogin size={26} />
+          </div>
+        )}
+      </Link>
+    </>
   );
 }
