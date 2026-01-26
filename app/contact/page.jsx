@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { ArrowLeft } from "lucide-react";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -61,8 +62,9 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen p-8 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
       <div className="max-w-2xl mx-auto">
-        <Link href="/" className="text-amber-400 hover:text-amber-300 mb-8 inline-block">
-          ← Back to Home
+        <Link href="/" className="inline-flex items-center gap-2 mb-8 text-amber-400 hover:text-amber-300">
+          <ArrowLeft className="h-5 w-5" />
+          <span>Back to Home</span>
         </Link>
         
         <div className="bg-slate-700 rounded-lg p-8 shadow-xl">

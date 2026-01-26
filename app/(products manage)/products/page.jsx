@@ -20,16 +20,22 @@ export default async function ProductsPage({ searchParams }) {
   const data = await res.json();
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Products</h1>
+    <div className="min-h-screen bg-gradient-to-b  text-foreground">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6 text-center">Our Products</h1>
 
-      <Filters />
+        <Filters />
 
-      <ProductGrid products={data.products} />
+        <ProductGrid products={data.products} />
 
-      {/* Pagination Info */}
-      <div className="mt-4">
-        Page {data.pagination.currentPage} of {data.pagination.totalPages} | Total Products: {data.pagination.totalProducts}
+        {/* Pagination Info */}
+        <div className="mt-8 flex justify-center">
+          <div className="bg-card text-card-foreground p-4 rounded-lg shadow-md">
+            <p className="text-sm">
+              Page <span className="font-semibold">{data.pagination.currentPage}</span> of <span className="font-semibold">{data.pagination.totalPages}</span> | Total Products: <span className="font-semibold">{data.pagination.totalProducts}</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

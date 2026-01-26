@@ -3,7 +3,12 @@ import ProductCard from "./product-card.jsx";
 
 export default function ProductGrid({ products }) {
   if (!products || products.length === 0) {
-    return <p>No products found.</p>;
+    return (
+      <div className="text-center py-12">
+        <p className="text-lg text-muted-foreground">No products found.</p>
+        <p className="text-sm text-muted-foreground mt-2">Try adjusting your filters or search terms.</p>
+      </div>
+    );
   }
 
   return (

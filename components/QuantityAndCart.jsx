@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMyContext } from "@/context/context";
-import cart from "../app/cart/page";
+import cart from "@/app/(auth)/dashboard/cart/page.tsx";
 
 export default function QuantityAndCart({ product }) {
   const router = useRouter();

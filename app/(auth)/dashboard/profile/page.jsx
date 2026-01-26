@@ -109,7 +109,7 @@ export default function Profile() {
                   <p className="text-white/90 text-sm">{user?.email || "Not logged in"}</p>
                 </div>
                   {/* Admin Button */}
-                  {user?.userRoll === "admin" && (
+                  {/* {user?.userRoll === "admin" && (
                     <button
                       onClick={() => router.push("/admin")}
                       className="
@@ -124,7 +124,7 @@ export default function Profile() {
                     >
                       Admin Dashboard
                     </button>
-                  )}
+                  )} */}
               </div>
 
               {/* Profile Form */}

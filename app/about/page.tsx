@@ -1,11 +1,14 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react"
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white p-8 md:p-12">
       <div className="max-w-4xl mx-auto">
-        <Link href="/" className="text-amber-400 hover:text-amber-300 mb-8 inline-block">
-          ← Back to Home
+      
+        <Link href="/" className="inline-flex items-center gap-2 mb-8 text-amber-400 hover:text-amber-300">
+          <ArrowLeft className="h-5 w-5" />
+          <span>Back to Home</span>
         </Link>
 
         <header className="mb-12">
