@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMyContext } from "@/context/context";
-import cart from "@/app/(auth)/dashboard/cart/page.tsx";
+import { toast } from "sonner";
+import cart from "@/app/(auth)/dashboard/cart/page.jsx";
 
 export default function QuantityAndCart({ product }) {
   const router = useRouter();
@@ -12,7 +13,47 @@ export default function QuantityAndCart({ product }) {
   const isLoggedIn = !!user;
 
   function AddToCart(){
-    router.push("/cart");
+
+    console.log("Add to cart clicked");
+    console.log("isLoggedIn:", isLoggedIn);
+  
+
+    if(!isLoggedIn){
+      toast.warning("Please login to add items to cart");
+      router.push("/login");
+      return;
+    }
+
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: user._id,
+        productId: product._id,
+        quantity: quantity,
+      }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+    toast.success("Added to cart");
+
+
+
+
+    // router.push("/dashboard/cart");
   }
 
   return (

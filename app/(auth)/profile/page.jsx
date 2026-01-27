@@ -3,8 +3,6 @@ import { useMyContext } from "@/context/context";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import AdminProfile from "@/components/adminProfile";
-import CustomerProfile from "@/components/customerProfile";
 import { toast } from "sonner";
 
 export default function Profile() {

@@ -40,7 +40,7 @@ export default function UserIcon() {
   return (
     <>
       {/* <ModeToggle /> */}
-      <Link href={isLoggedIn ? "dashboard/profile" : "/login"}>
+      <Link href={isLoggedIn ? "/dashboard/profile" : "/login"}>
         {isLoggedIn ? (
           <div className={`${base} ${border} ${isActive ? "bg-slate-700 text-amber-400" : "text-white hover:bg-slate-700 hover:text-amber-400"}`}>
             <CiUser size={26} />

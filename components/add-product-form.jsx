@@ -35,19 +35,15 @@ export default function AddProductPage() {
     } finally {
       setLoading(false);
     }
-};
+  };
 
 
-  const inputClass =
-    "w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400";
+  const inputClass = "w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400";
 
   return (
+
     <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-white p-8 md:p-12">
       <div className="max-w-5xl mx-auto">
-
-        <Link href="/" className="text-amber-400 hover:text-amber-300 mb-8 inline-block">
-          ← Back to Home
-        </Link>
 
         <header className="mb-10">
           <h1 className="text-4xl font-bold mb-2">Add New Product</h1>

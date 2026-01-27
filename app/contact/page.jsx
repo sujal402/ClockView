@@ -13,14 +13,14 @@ export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   function validate() {
-    if (!name.trim()) return "Name is required";
+    if (!name.trim() || name.length <5) return "Name is required and should be at least 5 characters long";
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Valid email is required";
     if (!message.trim() || message.length < 10) return "Message must be at least 10 characters long";
     return "";
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     setError("");
     setSuccess("");
 
