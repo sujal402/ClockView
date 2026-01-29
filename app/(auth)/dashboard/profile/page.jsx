@@ -75,7 +75,7 @@ export default function Profile() {
     }
   };
 
-  const redirectToCart = () => router.push("/cart");
+  const redirectToCart = () => router.push("/dashboard/cart");
 
   const logOut = async () => {
     try {
